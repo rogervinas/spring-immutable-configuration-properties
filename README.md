@@ -1,5 +1,7 @@
 # Spring Immutable @ConfigurationProperties PoC
 
+[![Build Status](https://travis-ci.org/rogervinas/spring-immutable-configuration-properties.svg?branch=master)](https://travis-ci.org/rogervinas/spring-immutable-configuration-properties)
+
 Following this:
 * Issue https://github.com/spring-projects/spring-boot/issues/8762
 * Latest documentation at  https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-docs/src/main/asciidoc/spring-boot-features.adoc
