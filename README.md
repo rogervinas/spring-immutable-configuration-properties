@@ -1,6 +1,7 @@
-# Spring Immutable @ConfigurationProperties PoC
+[![CI](https://github.com/rogervinas/spring-immutable-configuration-properties/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/rogervinas/spring-immutable-configuration-properties/actions/workflows/gradle.yml)
+[![CodeQL](https://github.com/rogervinas/spring-immutable-configuration-properties/actions/workflows/codeql-analysis.yml/badge.svg?branch=master)](https://github.com/rogervinas/spring-immutable-configuration-properties/actions/workflows/codeql-analysis.yml)
 
-[![Build Status](https://travis-ci.org/rogervinas/spring-immutable-configuration-properties.svg?branch=master)](https://travis-ci.org/rogervinas/spring-immutable-configuration-properties)
+# Spring Immutable @ConfigurationProperties PoC
 
 🤩 This sample is now much more easier with [@ConstructorBinding](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/context/properties/ConstructorBinding.html)
 
