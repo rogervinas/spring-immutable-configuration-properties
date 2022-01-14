@@ -5,6 +5,12 @@
 
 🤩 This sample is now much more easier with [@ConstructorBinding](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/context/properties/ConstructorBinding.html)
 
+## Test
+
+```bash
+./gradlew test
+```
+
 ## Run
 
 ```bash
