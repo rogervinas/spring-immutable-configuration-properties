@@ -16,24 +16,25 @@ import static org.awaitility.Awaitility.await;
 @ExtendWith(OutputCaptureExtension.class)
 public class AcmeApplicationTest {
 
-	@Value("${app.schedule}")
-	private long schedule;
+  @Value("${app.schedule}")
+  private long schedule;
 
-	@Autowired
-	private AcmeProperties properties;
+  @Autowired
+  private AcmeProperties properties;
 
-	@Test
-	public void should_load_properties() {
-		assertThat(properties.isEnabled()).isEqualTo(true);
-		assertThat(properties.getText()).isEqualTo("hello world");
-		assertThat(properties.getNumber()).isEqualTo(3.14f);
-		assertThat(properties.getList()).containsExactlyInAnyOrder("one", "two", "three");
-	}
+  @Test
+  public void should_load_properties() {
+    assertThat(properties.isEnabled()).isEqualTo(true);
+    assertThat(properties.getText()).isEqualTo("hello world");
+    assertThat(properties.getNumber()).isEqualTo(3.14f);
+    assertThat(properties.getList()).containsExactlyInAnyOrder("one", "two", "three");
+  }
 
-	@Test
-	public void should_print_properties(CapturedOutput capturedOutput) {
-		await()
-				.atMost(2 * schedule, TimeUnit.MILLISECONDS)
-				.until(() -> capturedOutput.toString().contains("AcmeProperties{enabled=true, text='hello world', list=[one, two, three], number=3.14}"));
-	}
+  @Test
+  public void should_print_properties(CapturedOutput capturedOutput) {
+    await()
+      .atMost(2 * schedule, TimeUnit.MILLISECONDS)
+      .until(() -> capturedOutput.toString()
+        .contains("AcmeProperties{enabled=true, text='hello world', list=[one, two, three], number=3.14}"));
+  }
 }

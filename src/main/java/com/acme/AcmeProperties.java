@@ -16,10 +16,10 @@ public class AcmeProperties {
   private final float number;
 
   public AcmeProperties(
-      boolean enabled,
-      String text,
-      List<String> list,
-      float number
+    boolean enabled,
+    String text,
+    List<String> list,
+    float number
   ) {
     this.enabled = enabled;
     this.text = text;
@@ -45,10 +45,10 @@ public class AcmeProperties {
 
   @Override public String toString() {
     return "AcmeProperties{" +
-        "enabled=" + enabled +
-        ", text='" + text + '\'' +
-        ", list=" + list +
-        ", number=" + number +
-        '}';
+      "enabled=" + enabled +
+      ", text='" + text + '\'' +
+      ", list=" + list +
+      ", number=" + number +
+      '}';
   }
 }
