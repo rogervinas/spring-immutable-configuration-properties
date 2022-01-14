@@ -1,24 +1,20 @@
 package com.acme;
 
 import java.util.concurrent.TimeUnit;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.rule.OutputCapture;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.test.system.CapturedOutput;
+import org.springframework.boot.test.system.OutputCaptureExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
+@ExtendWith(OutputCaptureExtension.class)
 public class AcmeApplicationTest {
-
-	@Rule
-	public OutputCapture outputCapture = new OutputCapture();
 
 	@Value("${app.schedule}")
 	private long schedule;
@@ -35,9 +31,9 @@ public class AcmeApplicationTest {
 	}
 
 	@Test
-	public void should_print_properties() {
+	public void should_print_properties(CapturedOutput capturedOutput) {
 		await()
 				.atMost(2 * schedule, TimeUnit.MILLISECONDS)
-				.until(() -> outputCapture.toString().contains("AcmeProperties{enabled=true, text='hello world', list=[one, two, three], number=3.14}"));
+				.until(() -> capturedOutput.toString().contains("AcmeProperties{enabled=true, text='hello world', list=[one, two, three], number=3.14}"));
 	}
 }
