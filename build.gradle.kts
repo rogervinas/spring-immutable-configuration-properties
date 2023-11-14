@@ -19,7 +19,7 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("org.assertj:assertj-core:3.24.2")
-  testImplementation("org.awaitility:awaitility:4.1.1")
+  testImplementation("org.awaitility:awaitility:4.2.0")
 }
 
 tasks.withType<Test> {
