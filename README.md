@@ -1,6 +1,6 @@
 [![CI](https://github.com/rogervinas/spring-immutable-configuration-properties/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/rogervinas/spring-immutable-configuration-properties/actions/workflows/gradle.yml)
 ![Java](https://img.shields.io/badge/Java-11-blue?labelColor=black)
-![SpringBoot](https://img.shields.io/badge/SpringBoot-2.6.2-blue?labelColor=black)
+![SpringBoot](https://img.shields.io/badge/SpringBoot-2.7.17-blue?labelColor=black)
 
 # Spring Immutable @ConfigurationProperties PoC
 
