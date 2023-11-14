@@ -67,6 +67,9 @@ data class AcmeKotlinDataClassProperties (
 )
 ```
 
+You can also browse older versions:
+* [Spring Boot 2.x](https://github.com/rogervinas/spring-immutable-configuration-properties/tree/spring-boot-2.x)
+
 ## Test
 
 Review [AcmeApplicationTest](src/test/java/com/acme/AcmeApplicationTest.java) and ...
