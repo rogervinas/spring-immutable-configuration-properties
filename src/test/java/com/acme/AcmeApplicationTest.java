@@ -1,40 +1,53 @@
 package com.acme;
 
-import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.system.CapturedOutput;
-import org.springframework.boot.test.system.OutputCaptureExtension;
+import org.springframework.context.ApplicationContext;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.awaitility.Awaitility.await;
 
 @SpringBootTest
-@ExtendWith(OutputCaptureExtension.class)
 public class AcmeApplicationTest {
 
-  @Value("${app.schedule}")
-  private long schedule;
-
   @Autowired
-  private AcmeProperties properties;
+  private ApplicationContext context;
 
   @Test
-  public void should_load_properties() {
-    assertThat(properties.isEnabled()).isEqualTo(true);
-    assertThat(properties.getText()).isEqualTo("hello world");
-    assertThat(properties.getNumber()).isEqualTo(3.14f);
-    assertThat(properties.getList()).containsExactlyInAnyOrder("one", "two", "three");
+  public void should_load_java_class_properties() {
+    var bean = context.getBean(AcmeJavaClassProperties.class);
+    assertThat(bean).isNotNull();
+    assertValuesAreAsExpected(bean.isEnabled(), bean.getText(), bean.getNumber(), bean.getList());
   }
 
   @Test
-  public void should_print_properties(CapturedOutput capturedOutput) {
-    await()
-      .atMost(2 * schedule, TimeUnit.MILLISECONDS)
-      .until(() -> capturedOutput.toString()
-        .contains("AcmeProperties{enabled=true, text='hello world', list=[one, two, three], number=3.14}"));
+  public void should_load_java_record_properties() {
+    var bean = context.getBean(AcmeJavaRecordProperties.class);
+    assertThat(bean).isNotNull();
+    assertValuesAreAsExpected(bean.enabled(), bean.text(), bean.number(), bean.list());
   }
+
+  @Test
+  public void should_load_kotlin_class_properties() {
+    var bean = context.getBean(AcmeKotlinClassProperties.class);
+    assertThat(bean).isNotNull();
+    assertValuesAreAsExpected(bean.getEnabled(), bean.getText(), bean.getNumber(), bean.getList());
+  }
+
+  @Test
+  public void should_load_kotlin_data_class_properties() {
+    var bean = context.getBean(AcmeKotlinDataClassProperties.class);
+    assertThat(bean).isNotNull();
+    assertValuesAreAsExpected(bean.getEnabled(), bean.getText(), bean.getNumber(), bean.getList());
+  }
+
+  private void assertValuesAreAsExpected(boolean enabled, String text, float number, List<String> list) {
+    assertThat(enabled).isEqualTo(true);
+    assertThat(text).isEqualTo("hello world");
+    assertThat(number).isEqualTo(3.14f);
+    assertThat(list).containsExactlyInAnyOrder("one", "two", "three");
+  }
+
 }

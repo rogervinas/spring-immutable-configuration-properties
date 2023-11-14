@@ -6,16 +6,16 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 
 import static java.util.Collections.unmodifiableList;
 
-@ConfigurationProperties("acme")
 @ConstructorBinding
-public class AcmeProperties {
+@ConfigurationProperties("acme")
+public class AcmeJavaClassProperties {
 
   private final boolean enabled;
   private final String text;
   private final List<String> list;
   private final float number;
 
-  public AcmeProperties(
+  public AcmeJavaClassProperties(
     boolean enabled,
     String text,
     List<String> list,
