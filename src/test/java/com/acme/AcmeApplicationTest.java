@@ -49,5 +49,4 @@ public class AcmeApplicationTest {
     assertThat(number).isEqualTo(3.14f);
     assertThat(list).containsExactlyInAnyOrder("one", "two", "three");
   }
-
 }
