@@ -1,6 +1,3 @@
-app:
-  schedule: 1000
-
 acme:
   enabled: true
   text: "hello world"

@@ -2,29 +2,68 @@
 ![Java](https://img.shields.io/badge/Java-21-blue?labelColor=black)
 ![SpringBoot](https://img.shields.io/badge/SpringBoot-2.7.17-blue?labelColor=black)
 
-# Spring Immutable @ConfigurationProperties PoC
+# Spring Immutable @ConfigurationProperties
 
-🤩 This sample is now much more easier with [@ConstructorBinding](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/context/properties/ConstructorBinding.html)
+There are at least 4 ways of having **immutable** properties loaded from configuration:
+1) [A plain Java class](src/main/java/com/acme/AcmeJavaClassProperties.java)
+```java
+@ConstructorBinding
+@ConfigurationProperties("acme")
+public class AcmeJavaClassProperties {
 
+  private final boolean enabled;
+  private final String text;
+  private final List<String> list;
+  private final float number;
+
+  public AcmeJavaClassProperties(
+    boolean enabled,
+    String text,
+    List<String> list,
+    float number
+  ) {
+    this.enabled = enabled;
+    this.text = text;
+    this.list = unmodifiableList(list);
+    this.number = number;
+    }
+}
+```
+2) [A Java record](src/main/java/com/acme/AcmeJavaRecordProperties.java) (no need for `@ConstructorBinding`)
+```java
+@ConfigurationProperties("acme")
+public record AcmeJavaRecordProperties(
+  boolean enabled,
+  String text,
+  List<String> list,
+  float number
+) {
+}
+```
+3) [A plain Kotlin class](src/main/java/com/acme/AcmeKotlinClassProperties.kt)
+```kotlin
+@ConstructorBinding
+@ConfigurationProperties("acme")
+class AcmeKotlinClassProperties(
+  val enabled: Boolean,
+  val text: String,
+  val list: List<String>,
+  val number: Float
+)
+```
+4) [A Kotlin data class](src/main/java/com/acme/AcmeKotlinDataClassProperties.kt)
+```kotlin
+@ConstructorBinding
+@ConfigurationProperties("acme")
+data class AcmeKotlinDataClassProperties (
+  val enabled: Boolean,
+  val text: String,
+  val list: List<String>,
+  val number: Float
+)
+```
 ## Test
 
 ```bash
 ./gradlew test
 ```
-
-## Run
-
-```bash
-./gradlew bootRun
-```
-
-## Deprecated way
-
-Following this:
-* Issue https://github.com/spring-projects/spring-boot/issues/8762
-* Latest documentation at  https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-docs/src/main/asciidoc/spring-boot-features.adoc
-
-Latest **org.springframework.boot:2.2.0.BUILD-SNAPSHOT** enables Immutable @ConfigurationProperties if you compile with `-parameters` option.
-* Check [AcmeProperties.java](https://github.com/rogervinas/spring-immutable-configuration-properties/blob/master/src/main/java/com/acme/AcmeProperties.java)
-* Check [enable -parameters javac option](https://github.com/rogervinas/spring-immutable-configuration-properties/blob/master/build.gradle#L26)
-

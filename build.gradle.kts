@@ -1,10 +1,12 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
 import org.gradle.api.tasks.testing.logging.TestLogEvent.*
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   id("org.springframework.boot") version "2.7.17"
   id("io.spring.dependency-management") version "1.0.15.RELEASE"
-  java
+  kotlin("jvm") version "1.9.20"
+  kotlin("plugin.spring") version "1.9.20"
 }
 
 group = "com.example"
@@ -17,9 +19,16 @@ repositories {
 
 dependencies {
   implementation("org.springframework.boot:spring-boot-starter")
+  implementation("org.jetbrains.kotlin:kotlin-reflect")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("org.assertj:assertj-core:3.24.2")
-  testImplementation("org.awaitility:awaitility:4.1.1")
+}
+
+tasks.withType<KotlinCompile> {
+  kotlinOptions {
+    freeCompilerArgs += "-Xjsr305=strict"
+    jvmTarget = "21"
+  }
 }
 
 tasks.withType<Test> {
