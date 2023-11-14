@@ -2,11 +2,9 @@ package com.acme;
 
 import java.util.List;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.ConstructorBinding;
 
 import static java.util.Collections.unmodifiableList;
 
-@ConstructorBinding
 @ConfigurationProperties("acme")
 public class AcmeJavaClassProperties {
 
