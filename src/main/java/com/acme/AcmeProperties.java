@@ -43,7 +43,8 @@ public class AcmeProperties {
     return number;
   }
 
-  @Override public String toString() {
+  @Override
+  public String toString() {
     return "AcmeProperties{" +
       "enabled=" + enabled +
       ", text='" + text + '\'' +
