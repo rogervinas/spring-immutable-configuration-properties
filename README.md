@@ -1,7 +1,7 @@
 [![CI](https://github.com/rogervinas/spring-immutable-configuration-properties/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/rogervinas/spring-immutable-configuration-properties/actions/workflows/gradle.yml)
 ![Java](https://img.shields.io/badge/Java-21-blue?labelColor=black)
 ![Kotlin](https://img.shields.io/badge/Kotlin-1.9.20-blue?labelColor=black)
-![SpringBoot](https://img.shields.io/badge/SpringBoot-2.7.17-blue?labelColor=black)
+![SpringBoot](https://img.shields.io/badge/SpringBoot-3.1.5-blue?labelColor=black)
 
 # Spring Immutable @ConfigurationProperties
 
@@ -9,7 +9,6 @@ There are at least 4 ways of having **immutable** properties loaded from configu
 
 1) [A plain Java class](src/main/java/com/acme/AcmeJavaClassProperties.java)
 ```java
-@ConstructorBinding
 @ConfigurationProperties("acme")
 public class AcmeJavaClassProperties {
 
@@ -32,7 +31,7 @@ public class AcmeJavaClassProperties {
 }
 ```
 
-2) [A Java record](src/main/java/com/acme/AcmeJavaRecordProperties.java) (no need for `@ConstructorBinding`)
+2) [A Java record](src/main/java/com/acme/AcmeJavaRecordProperties.java)
 ```java
 @ConfigurationProperties("acme")
 public record AcmeJavaRecordProperties(
@@ -46,7 +45,6 @@ public record AcmeJavaRecordProperties(
 
 3) [A plain Kotlin class](src/main/java/com/acme/AcmeKotlinClassProperties.kt)
 ```kotlin
-@ConstructorBinding
 @ConfigurationProperties("acme")
 class AcmeKotlinClassProperties(
   val enabled: Boolean,
@@ -58,7 +56,6 @@ class AcmeKotlinClassProperties(
 
 4) [A Kotlin data class](src/main/java/com/acme/AcmeKotlinDataClassProperties.kt)
 ```kotlin
-@ConstructorBinding
 @ConfigurationProperties("acme")
 data class AcmeKotlinDataClassProperties (
   val enabled: Boolean,
@@ -67,6 +64,8 @@ data class AcmeKotlinDataClassProperties (
   val number: Float
 )
 ```
+
+Note that since Spring Boot 3.x [@ConstructorBinding](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/context/properties/bind/ConstructorBinding.html) annotation is only required to indicate which constructor to use in case there is more than one.
 
 You can also browse older versions:
 * [Spring Boot 2.x](https://github.com/rogervinas/spring-immutable-configuration-properties/tree/spring-boot-2.x)
