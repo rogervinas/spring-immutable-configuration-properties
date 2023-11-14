@@ -5,6 +5,7 @@
 # Spring Immutable @ConfigurationProperties
 
 There are at least 4 ways of having **immutable** properties loaded from configuration:
+
 1) [A plain Java class](src/main/java/com/acme/AcmeJavaClassProperties.java)
 ```java
 @ConstructorBinding
@@ -29,6 +30,7 @@ public class AcmeJavaClassProperties {
     }
 }
 ```
+
 2) [A Java record](src/main/java/com/acme/AcmeJavaRecordProperties.java) (no need for `@ConstructorBinding`)
 ```java
 @ConfigurationProperties("acme")
@@ -40,6 +42,7 @@ public record AcmeJavaRecordProperties(
 ) {
 }
 ```
+
 3) [A plain Kotlin class](src/main/java/com/acme/AcmeKotlinClassProperties.kt)
 ```kotlin
 @ConstructorBinding
@@ -51,6 +54,7 @@ class AcmeKotlinClassProperties(
   val number: Float
 )
 ```
+
 4) [A Kotlin data class](src/main/java/com/acme/AcmeKotlinDataClassProperties.kt)
 ```kotlin
 @ConstructorBinding
@@ -62,7 +66,10 @@ data class AcmeKotlinDataClassProperties (
   val number: Float
 )
 ```
+
 ## Test
+
+Review [AcmeApplicationTest](src/test/java/com/acme/AcmeApplicationTest.java) and ...
 
 ```bash
 ./gradlew test
