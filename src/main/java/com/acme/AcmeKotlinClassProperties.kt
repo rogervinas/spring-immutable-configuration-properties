@@ -7,5 +7,5 @@ class AcmeKotlinClassProperties(
   val enabled: Boolean,
   val text: String,
   val list: List<String>,
-  val number: Float
+  val number: Float,
 )
