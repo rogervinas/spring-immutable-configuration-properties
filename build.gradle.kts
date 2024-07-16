@@ -5,7 +5,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 
 plugins {
   id("org.springframework.boot") version "3.3.1"
-  id("io.spring.dependency-management") version "1.1.5"
+  id("io.spring.dependency-management") version "1.1.6"
   kotlin("jvm") version "2.0.0"
   kotlin("plugin.spring") version "2.0.0"
   id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
@@ -22,7 +22,7 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter")
   implementation("org.jetbrains.kotlin:kotlin-reflect")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
-  testImplementation("org.assertj:assertj-core:3.26.0")
+  testImplementation("org.assertj:assertj-core:3.26.3")
 }
 
 java {
